@@ -1,12 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import Home from "@pages/Home";
+import Home from "@/pages/Home";
+import Cart from "@/pages/Cart";
+import SuccessOrder from "@/pages/SuccessOrder";
+
+import { MainLayout } from "@/components/layouts/MainLayout";
+
+import { homeLoader } from "./loaders/homeLoader";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    // element:
-    Component: Home,
+    Component: MainLayout,
+    loader: homeLoader,
     children: [
       {
         index: true,
@@ -14,16 +20,12 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "shop",
-      },
-      {
         path: "cart",
-      },
-      {
-        path: "order",
+        Component: Cart,
       },
       {
         path: "success",
+        Component: SuccessOrder,
       },
     ],
   },
