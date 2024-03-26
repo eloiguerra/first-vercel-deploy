@@ -25,6 +25,7 @@ export const MobileOrderCard = ({
   handleQuantityChange,
   handleQuantityDecrease,
   handleQuantityIncrease,
+  handleBlurQuantity,
 }: OrderCardProps) => {
   const { movies, totalPrice, removeMovie } = useCart();
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ export const MobileOrderCard = ({
                 onIncrease={() => handleQuantityIncrease(movie)}
                 onDecrease={() => handleQuantityDecrease(movie)}
                 onChange={(e) => handleQuantityChange(e, movie)}
+                onBlur={() => handleBlurQuantity(movie)}
               />
             </ProductInfo>
             <ProductInfoPrice>

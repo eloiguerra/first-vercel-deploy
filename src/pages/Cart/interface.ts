@@ -7,4 +7,5 @@ export interface OrderCardProps {
   ) => void;
   handleQuantityIncrease: (movie: Movie) => void;
   handleQuantityDecrease: (movie: Movie) => void;
+  handleBlurQuantity: (movie: Movie) => void;
 }

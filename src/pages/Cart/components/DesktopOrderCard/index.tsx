@@ -26,6 +26,7 @@ export const DesktopOrderCard = ({
   handleQuantityChange,
   handleQuantityDecrease,
   handleQuantityIncrease,
+  handleBlurQuantity,
 }: OrderCardProps) => {
   const { movies, totalPrice, removeMovie } = useCart();
   const navigate = useNavigate();
@@ -68,6 +69,7 @@ export const DesktopOrderCard = ({
               onIncrease={() => handleQuantityIncrease(movie)}
               onDecrease={() => handleQuantityDecrease(movie)}
               onChange={(e) => handleQuantityChange(e, movie)}
+              onBlur={() => handleBlurQuantity(movie)}
             />
             <SubTotalContainer>
               <Typography weight="700">

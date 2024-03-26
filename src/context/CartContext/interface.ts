@@ -10,7 +10,11 @@ export interface CartProviderContextProps {
   addMovie: (movie: Omit<Movie, "quantity">) => void;
   removeMovie: (movieId: number) => void;
   getMovieQuantityById: (movieId: number) => number;
-  handleMovieQuantity: (movieId: number, quantity: number) => void;
+  handleMovieQuantity: (
+    movieId: number,
+    quantity: number,
+    mustDeleteWhenZero?: boolean
+  ) => void;
   clearCart: () => void;
 
   movies: Movie[];

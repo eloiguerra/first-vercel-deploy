@@ -7,7 +7,7 @@ import { MobileOrderCard } from "./components/MobileOrderCard";
 import { NoContent } from "@/components/display/NoContent";
 
 function Cart() {
-  const { handleMovieQuantity, movies } = useCart();
+  const { handleMovieQuantity, movies, removeMovie } = useCart();
   const isMobile = useMediaQuery("sm");
 
   const handleQuantityChange = (
@@ -22,9 +22,15 @@ function Cart() {
   };
 
   const handleQuantityDecrease = (movie: Movie) => {
-    if (movie.quantity === 1) return;
+    if (movie.quantity === 0) return;
 
-    handleMovieQuantity(movie.id, movie.quantity - 1);
+    handleMovieQuantity(movie.id, movie.quantity - 1, true);
+  };
+
+  const handleBlurQuantity = (movie: Movie) => {
+    if (movie.quantity > 0) return;
+
+    removeMovie(movie.id);
   };
 
   if (!movies.length) return <NoContent />;
@@ -34,12 +40,14 @@ function Cart() {
       handleQuantityChange={handleQuantityChange}
       handleQuantityDecrease={handleQuantityDecrease}
       handleQuantityIncrease={handleQuantityIncrease}
+      handleBlurQuantity={handleBlurQuantity}
     />
   ) : (
     <DesktopOrderCard
       handleQuantityChange={handleQuantityChange}
       handleQuantityDecrease={handleQuantityDecrease}
       handleQuantityIncrease={handleQuantityIncrease}
+      handleBlurQuantity={handleBlurQuantity}
     />
   );
 }

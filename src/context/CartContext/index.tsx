@@ -19,7 +19,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setMovies([...movies, { ...movie, quantity: 1 }]);
   };
 
-  const handleMovieQuantity = (movieId: number, quantity: number) => {
+  const handleMovieQuantity = (
+    movieId: number,
+    quantity: number,
+    mustDeleteWhenZero = false
+  ) => {
+    if (quantity === 0 && mustDeleteWhenZero) {
+      removeMovie(movieId);
+      return;
+    }
+
     setMovies((prevMovies) =>
       prevMovies.map((movie) =>
         movie.id === movieId ? { ...movie, quantity } : movie
